@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "managedInstanceName": {
+            "required": true,
+            "type": "string"
+        },
+        "encryptionProtectorName": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "current"
+            ]
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

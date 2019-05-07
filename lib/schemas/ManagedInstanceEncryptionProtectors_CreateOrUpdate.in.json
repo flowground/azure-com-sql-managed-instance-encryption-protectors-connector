@@ -1,0 +1,106 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "managedInstanceName": {
+            "required": true,
+            "type": "string"
+        },
+        "encryptionProtectorName": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "current"
+            ]
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "ARM resource.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource ID.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Resource name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object",
+                            "x-ms-azure-resource": true
+                        }
+                    ],
+                    "description": "ARM proxy resource.",
+                    "properties": {},
+                    "type": "object"
+                }
+            ],
+            "description": "The managed instance encryption protector.",
+            "properties": {
+                "kind": {
+                    "description": "Kind of encryption protector. This is metadata used for the Azure portal experience.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Resource properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "serverKeyName": {
+                            "description": "The name of the managed instance key.",
+                            "type": "string"
+                        },
+                        "serverKeyType": {
+                            "description": "The encryption protector type like 'ServiceManaged', 'AzureKeyVault'.",
+                            "enum": [
+                                "ServiceManaged",
+                                "AzureKeyVault"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ServerKeyType"
+                            }
+                        },
+                        "thumbprint": {
+                            "description": "Thumbprint of the server key.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "uri": {
+                            "description": "The URI of the server key.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "serverKeyType"
+                    ],
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
